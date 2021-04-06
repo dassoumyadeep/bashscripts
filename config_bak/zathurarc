@@ -1,0 +1,8 @@
+set selection-clipboard clipboard
+set window-title-basename true
+set filemonitor signal
+set show-v-scrollbar true
+set default-bg '#303030'
+set adjust-open true
+set scroll-page-aware true
+set statusbar-home-tilde true
