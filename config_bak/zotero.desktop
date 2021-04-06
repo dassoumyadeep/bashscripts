@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Zotero
+GenericName=Zotero Standalone. Is a free, easy-to-use tool to help you collect, organize, cite, and share your research sources.
+Icon=zotero
+Exec=env GTK_THEME=Adwaita:light  zotero %f
+Categories=Office
+Terminal=false
+Comment=Zotero is a free, easy-to-use tool to help you collect, organize, cite, and share research.
+Path=
+StartupNotify=false
