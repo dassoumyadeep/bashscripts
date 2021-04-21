@@ -8,9 +8,14 @@ if [[ -z "$1" ]] ; then
     mycase=99
 # Single Argument
 elif [ "$#" -eq 1 ]; then
-    echo "Will run pdf,bib,pdf,pdf on $1.tex"
-    filename=$1
-    mycase=1
+    if [[ $1 = "-c" ]]; then
+        mycase=5
+        filename="NoFilenameGiven"        
+    else
+        echo "Will run pdf,bib,pdf,pdf on $1.tex"
+        filename=$1
+        mycase=1
+    fi
 # Two arguments
 elif [ "$#" -eq 2 ]; then
     if [ $1 = "-b" ]; then
@@ -25,6 +30,9 @@ elif [ "$#" -eq 2 ]; then
     elif [ $1 = "-l" ]; then
         mycase=4
         filename=$2
+    elif [ $1 = "-c" ]; then
+        mycase=5
+        filename=$2
     else
         echo "Please check your inputs and try again."
         mycase=99
@@ -35,13 +43,14 @@ else
 fi
 
 if [ $mycase -eq 99 ]; then
-    echo "Usage : runtex [param] [filename]"
+    echo "Usage : runtex [param:-bpxlc] [filename]"
     echo "[filename] to be entered without .tex extension."
     echo "List of [param] :"
     echo "-b [filename]: Will run pdf -> bib -> pdf -> pdf [Default]"
     echo "-p [filename]: Will run only pdf on filename.tex"
     echo "-x [filename]: Will run only xe on filename.tex"
     echo "-l [filename]: Will run only lua on filename.tex"
+    echo "-c [filename]: Clear the temporary files."
     echo "pdf (pdflatex), bib (bibtex), xe (xelatex), lua (lualatex)."
 else
     echo "Welcome to Runtex!"
@@ -91,6 +100,14 @@ elif [ $mycase -eq 2 ] ; then
     pdflatex $filename.tex
 elif [ $mycase -eq 3 ] ; then
     xelatex $filename.tex
-elif [ $mycase -eq 2 ] ; then
+elif [ $mycase -eq 4 ] ; then
     lualatex $filename.tex
+elif [ $mycase -eq 5 ] ; then
+    echo "Do you want to clear 'converted-to.pdf's? [Y = 1, N = 0] : "
+    read CLRCONV
+    if [ $CLRCONV -eq 1 ] ; then
+        rm -rf *converted-to.pdf*
+        echo "Removed converted-to.pdf files."
+    fi
+    echo "Temp and Output files cleared."
 fi
