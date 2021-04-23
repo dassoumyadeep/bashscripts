@@ -59,21 +59,21 @@ else
     echo ""
     echo "Cleaning please wait ..."
     rm -f *~
-    rm -rf *.aux
-    rm -rf *.bbl
-    rm -rf *.blg
-    rm -rf *.d
-    rm -rf *.fls
-    rm -rf *.ilg
-    rm -rf *.ind
-    rm -rf *.toc*
-    rm -rf *.lot*
-    rm -rf *.lof*
-    rm -rf *.log
-    rm -rf *.idx
-    rm -rf *.out*
-    rm -rf *.nlo
-    rm -rf *.nls
+    find . -name \*.aux -type f -delete 
+    find . -name \*.bbl -type f -delete 
+    find . -name \*.blg -type f -delete 
+    find . -name \*.d -type f -delete 
+    find . -name \*.fls -type f -delete 
+    find . -name \*.ilg -type f -delete 
+    find . -name \*.ind -type f -delete 
+    find . -name \*.toc* -type f -delete 
+    find . -name \*.lot* -type f -delete 
+    find . -name \*.lof* -type f -delete 
+    find . -name \*.log -type f -delete 
+    find . -name \*.idx -type f -delete 
+    find . -name \*.out* -type f -delete 
+    find . -name \*.nlo -type f -delete 
+    find . -name \*.nls -type f -delete 
     rm -rf $filename.pdf
     rm -rf $filename.ps
     rm -rf $filename.dvi
@@ -106,7 +106,7 @@ elif [ $mycase -eq 5 ] ; then
     echo "Do you want to clear 'converted-to.pdf's? [Y = 1, N = 0] : "
     read CLRCONV
     if [ $CLRCONV -eq 1 ] ; then
-        rm -rf *converted-to.pdf*
+        find . -name \*converted-to.pdf\* -type f -delete 
         echo "Removed converted-to.pdf files."
     fi
     echo "Temp and Output files cleared."
